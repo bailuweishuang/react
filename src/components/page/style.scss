@@ -1,0 +1,40 @@
+.page-title {
+  .page-first-title {
+    display: flex;
+    background: rgb(246, 246, 246);
+    justify-content: center;
+    a {
+      font-size: 24px;
+      text-decoration: none;
+      margin-right: 20px;
+      color: #333;
+      .slecet {
+        padding: 14px;
+      }
+      .onSelected {
+        background: #f56a01;
+        color: #fff;
+      }
+    }
+  }
+  .page-second-title {
+    display: flex;
+    background: #cccccc;
+    a {
+      font-size: 20px;
+      text-decoration: none;
+      margin-right: 20px;
+      color: #333;
+      .slecet {
+        padding: 10px;
+      }
+      .onSelected {
+        font-weight: bold;
+        border-bottom: 2px solid #f09b62;
+      }
+    }
+  }
+  .page-content {
+    margin-top: 10px;
+  }
+}
