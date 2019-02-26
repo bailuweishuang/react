@@ -21,32 +21,36 @@ class ZRoute extends React.Component {
 }
 const Common = {
   Menus: {
-    home: [
+    first: [
       {
         name: "二级目录1",
-        path: "/home"
+        path: "/first"
       },
       {
         name: "二级目录2",
-        path: "/home/mine"
+        path: "/first/mine"
       }
     ],
-    mine: [
+    second: [
       {
         name: "二级目录3",
-        path: "/mine"
+        path: "/second"
       }
     ]
   },
   getNavigation: path => {
     const menus = [
       {
-        name: "一级目录1",
-        path: "/mine"
+        name: "首页",
+        path: "/"
       },
       {
-        name: "一级目录2",
-        path: "/home"
+        name: "第一",
+        path: "/first"
+      },
+      {
+        name: "第二",
+        path: "/second"
       }
     ];
     menus.map(item => {

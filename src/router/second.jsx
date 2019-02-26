@@ -1,14 +1,14 @@
 import React from "react";
-import Page from "../components/page/index.jsx";
+import Page from "@/components/page/index.jsx";
 import Common from "./common.jsx";
 const ZRoute = Common.ZRoute;
 const getNavigation = Common.getNavigation;
 const Menus = Common.Menus;
+const onIsSelected = Common.onIsSelected;
 import Bundle from "./bundle.js";
-const Homes = () => (
-  <Bundle load={require("bundle-loader?lazy!@/page/home/index.jsx")} />
+const Second = () => (
+  <Bundle load={require("bundle-loader?lazy!@/page/second/index.jsx")} />
 );
-
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -19,16 +19,19 @@ class Home extends React.Component {
   render() {
     return (
       <ZRoute
-        path="/"
-        exact
+        path="/second"
         component={({ match, history }) => {
           return (
             <Page
               {...this.props}
-              title="测试"
+              title="我的"
               navigation={getNavigation(match.path)}
+              horizontalMenus={{
+                onIsSelected: menu => onIsSelected(menu, history),
+                menus: Menus.second
+              }}
             >
-              <ZRoute exact path={match.url} component={Homes} />
+              <ZRoute exact path={match.url} component={Second} />
             </Page>
           );
         }}
@@ -36,4 +39,4 @@ class Home extends React.Component {
     );
   }
 }
-export default Home;
+export default Home

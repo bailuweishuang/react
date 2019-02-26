@@ -14,12 +14,12 @@ class Page extends React.Component {
     const title = props.title;
     const horizontalMenus = props.horizontalMenus;
     const navigation = props.navigation;
-    const { onIsSelected } = horizontalMenus;
+    const { onIsSelected } = horizontalMenus || {};
     return (
       <DocumentTitle title={title}>
         <div className="page-title">
           <div className="page-first-title">
-            {navigation.menus.map((item, index) => {
+            {navigation && navigation.menus.map((item, index) => {
               return (
                 <Link
                   to={item.path}
@@ -33,7 +33,7 @@ class Page extends React.Component {
             })}
           </div>
           <div className="page-second-title">
-            {horizontalMenus.menus.map((menu, index) => {
+            {horizontalMenus && horizontalMenus.menus.map((menu, index) => {
               return (
                 <Link
                   to={menu.path}

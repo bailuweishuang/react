@@ -4,8 +4,8 @@ import Common from "./common.jsx";
 const ZRoute = Common.ZRoute;
 
 import HomeRouter from "./home.jsx";
-// import MineRouter from "./mine.jsx";
-console.log(HomeRouter)
+import FirstRouter from "./first.jsx";
+import SecondRouter from "./second.jsx";
 class Routers extends React.Component {
   constructor(props) {
     super(props);
@@ -17,8 +17,9 @@ class Routers extends React.Component {
         <ZRoute
           component={(props, index) => {
             return [
-              <HomeRouter {...props} key={Util.getRandomString()} />
-              //<MineRouter {...props} key={Util.getRandomString()}/>
+              <HomeRouter {...props} key={Util.getRandomString()} />,
+              <FirstRouter {...props} key={Util.getRandomString()} />,
+              <SecondRouter {...props} key={Util.getRandomString()} />
             ];
           }}
         />
