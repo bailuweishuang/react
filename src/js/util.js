@@ -197,33 +197,33 @@ const util = {
   divs() {
     return util.reduce(arguments, util.div);
   },
-  format(time, format = util.NYRSFM) {
-    return time ? moment(time).format(format) : "";
-  },
-  NY: "YYYY-MM",
-  ny(time) {
-    return util.format(time, util.NY);
-  },
-  NYR: "YYYY-MM-DD",
-  nyr(time) {
-    return util.format(time, util.NYR);
-  },
-  SFM: "hh-mm-ss",
-  sfm(time) {
-    return util.format(time, util.SFM);
-  },
-  NYRSFM: "YYYY-MM-DD HH:mm:ss",
-  nyrsfm(time) {
-    return util.format(time, util.NYRSFM);
-  },
-  NYR000: "YYYY-MM-DD 00:00:00",
-  nyr000(time) {
-    return util.format(time, util.NYR000);
-  },
-  NYREND: "YYYY-MM-DD 23:59:59",
-  nyrend(time) {
-    return util.format(time, util.NYREND);
-  },
+  // format(time, format = util.NYRSFM) {
+  //   return time ? moment(time).format(format) : "";
+  // },
+  // NY: "YYYY-MM",
+  // ny(time) {
+  //   return util.format(time, util.NY);
+  // },
+  // NYR: "YYYY-MM-DD",
+  // nyr(time) {
+  //   return util.format(time, util.NYR);
+  // },
+  // SFM: "hh-mm-ss",
+  // sfm(time) {
+  //   return util.format(time, util.SFM);
+  // },
+  // NYRSFM: "YYYY-MM-DD HH:mm:ss",
+  // nyrsfm(time) {
+  //   return util.format(time, util.NYRSFM);
+  // },
+  // NYR000: "YYYY-MM-DD 00:00:00",
+  // nyr000(time) {
+  //   return util.format(time, util.NYR000);
+  // },
+  // NYREND: "YYYY-MM-DD 23:59:59",
+  // nyrend(time) {
+  //   return util.format(time, util.NYREND);
+  // },
   format({
     number = typeof arguments[0] === "object"
       ? arguments[0].number
