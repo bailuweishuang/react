@@ -1,10 +1,27 @@
 const merge = require("webpack-merge");
 const common = require("./webpack.common.js");
+const path = require("path");
 
 module.exports = merge(common, {
   devtool: "inline-source-map",
   devServer: {
     contentBase: "./dist",
-    hot: true
+    clientLogLevel: "warning",
+    publicPath: "/",
+    hot: true,
+    progress: true,
+    overlay: { warnings: false, errors: true },
+    historyApiFallback: {
+      rewrites: [{ from: /.*/, to: path.posix.join("/", "index.html") }]
+    },
+    // historyApiFallback: true,
+    // quiet: true, // necessary for FriendlyErrorsPlugin
+    compress: true,
+    inline: true,
+    port: 8083,
+    host: "127.0.0.1",
+    watchOptions: {
+      poll: false
+    }
   }
 });

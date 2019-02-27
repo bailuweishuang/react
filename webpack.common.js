@@ -13,6 +13,16 @@ module.exports = {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "build")
   },
+   externals: {
+    'react': 'window.React',
+    'react-dom': 'window.ReactDOM',
+    'react-redux': 'window.ReactRedux',
+    'react-router': 'window.ReactRouter',
+    'react-router-dom': 'window.ReactRouterDom',
+    'redux': 'window.Redux',
+    'moment': 'window.Moment',
+    'antd': 'window.antd',
+  },
   resolve: {
     extensions: [".js", ".css", ".json"],
     alias: {

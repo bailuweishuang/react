@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+const Route = ReactRouter.Route;
 class ZRoute extends React.Component {
   render() {
     const component = this.props.component;

@@ -1,8 +1,7 @@
 import React from "react";
-import { HashRouter } from "react-router-dom";
+const HashRouter = ReactRouterDOM.HashRouter;
 import Common from "./common.jsx";
 const ZRoute = Common.ZRoute;
-
 import HomeRouter from "./home.jsx";
 import FirstRouter from "./first.jsx";
 import SecondRouter from "./second.jsx";

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+const Link = ReactRouterDOM.Link
 import DocumentTitle from "react-document-title";
 import "./style.scss";
 class Page extends React.Component {
