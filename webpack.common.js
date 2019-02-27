@@ -4,24 +4,25 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 const webpack = require("webpack");
-
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 module.exports = {
   entry: {
-    app: "./src/main.js"
+    app: "./src/main.js",
+    vendor: ["react", "react-router-dom", "redux", "react-dom", "react-redux"]
   },
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "build")
   },
-   externals: {
-    'react': 'window.React',
-    'react-dom': 'window.ReactDOM',
-    'react-redux': 'window.ReactRedux',
-    'react-router': 'window.ReactRouter',
-    'react-router-dom': 'window.ReactRouterDom',
-    'redux': 'window.Redux',
-    'moment': 'window.Moment',
-    'antd': 'window.antd',
+  externals: {
+    react: "window.React",
+    "react-dom": "window.ReactDOM",
+    "react-redux": "window.ReactRedux",
+    "react-router": "window.ReactRouter",
+    "react-router-dom": "window.ReactRouterDom",
+    redux: "window.Redux",
+    moment: "window.Moment",
+    antd: "window.antd"
   },
   resolve: {
     extensions: [".js", ".css", ".json"],
@@ -101,6 +102,19 @@ module.exports = {
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new BundleAnalyzerPlugin()
-  ]
+    //new BundleAnalyzerPlugin(),  webpack打包文件大小分析
+    new UglifyJSPlugin(),
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify("production")
+      }
+    })
+  ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: { name: "commons", chunks: "initial", minChunks: 2 }
+      }
+    }
+  }
 };
