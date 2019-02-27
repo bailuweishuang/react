@@ -25,7 +25,7 @@ module.exports = {
     antd: "window.antd"
   },
   resolve: {
-    extensions: [".js", ".css", ".json"],
+    extensions: [".js", ".css", ".json", ".jsx", ".scss"],
     alias: {
       "@": path.resolve(__dirname, "src")
     }

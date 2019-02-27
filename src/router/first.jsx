@@ -1,11 +1,11 @@
 import React from "react";
-import Page from "@/components/page/index.jsx";
-import Common from "./common.jsx";
+import Page from "@/components/page";
+import Common from "./common";
 const ZRoute = Common.ZRoute;
 const getNavigation = Common.getNavigation;
 const Menus = Common.Menus;
 const onIsSelected = Common.onIsSelected;
-import Bundle from "./bundle.js";
+import Bundle from "./bundle";
 const First = () => (
   <Bundle load={require("bundle-loader?lazy!@/page/first/index.jsx")} />
 );

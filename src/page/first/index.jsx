@@ -1,7 +1,6 @@
 import React from "react";
 import "./style.scss";
 import { Table } from 'antd';
-
 class Home extends React.Component {
   constructor(props) {
     super(props);

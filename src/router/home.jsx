@@ -1,10 +1,10 @@
 import React from "react";
-import Page from "../components/page/index.jsx";
-import Common from "./common.jsx";
+import Page from "../components/page";
+import Common from "./common";
 const ZRoute = Common.ZRoute;
 const getNavigation = Common.getNavigation;
 const Menus = Common.Menus;
-import Bundle from "./bundle.js";
+import Bundle from "./bundle";
 const Homes = () => (
   <Bundle load={require("bundle-loader?lazy!@/page/home/index.jsx")} />
 );

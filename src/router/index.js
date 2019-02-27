@@ -1,10 +1,10 @@
 import React from "react";
 const HashRouter = ReactRouterDOM.HashRouter;
-import Common from "./common.jsx";
+import Common from "./common";
 const ZRoute = Common.ZRoute;
-import HomeRouter from "./home.jsx";
-import FirstRouter from "./first.jsx";
-import SecondRouter from "./second.jsx";
+import HomeRouter from "./home";
+import FirstRouter from "./first";
+import SecondRouter from "./second";
 class Routers extends React.Component {
   constructor(props) {
     super(props);

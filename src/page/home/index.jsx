@@ -1,6 +1,9 @@
 import React from "react";
-import './style.scss';
 import { DatePicker } from 'antd';
+import prestrain from "@/components/prestrain";
+@prestrain({
+  style: require("./style.scss")
+})
 class Home extends React.Component {
   constructor(props) {
     super(props);
