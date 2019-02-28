@@ -5,6 +5,8 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 const webpack = require("webpack");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 module.exports = {
   entry: {
     app: "./src/main.js",
@@ -43,7 +45,11 @@ module.exports = {
       },
       {
         test: /\.s[c|a]ss$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          //如果需要，可以在 sass-loader 之前将 resolve-url-loader 链接进来
+          use: ["css-loader", "sass-loader"]
+        })
       },
       {
         test: /(\.css|\.less)$/,
@@ -108,6 +114,10 @@ module.exports = {
       "process.env": {
         NODE_ENV: JSON.stringify("production")
       }
+    }),
+    new ExtractTextPlugin({
+      filename: "[name].css",
+      allChunks: true
     })
   ],
   optimization: {
