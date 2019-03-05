@@ -1,6 +1,10 @@
 import React from "react";
-import "./style.scss";
 import { Table } from 'antd';
+import prestrain from "@/components/prestrain";
+@prestrain({
+  style: require("./style.scss"),
+  form: true
+})
 class Home extends React.Component {
   constructor(props) {
     super(props);

@@ -1,7 +1,8 @@
 import style from "./style";
 import preload from "./preload";
 import { Form } from "antd";
-const connect = ReactRedux.connect;
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 const withRouter = ReactRouterDOM.withRouter;
 let page = options => {
   options = { withRouter: true, ...options };
@@ -24,7 +25,12 @@ let page = options => {
     }
     if (options && options.connect) {
       const { mapStateToProps, mapDispatchToProps } = options.connect;
-      Component = connect(mapStateToProps, mapDispatchToProps)(Component);
+      function mapDispatchToProp(dispatch) {
+        return {
+          ...bindActionCreators(mapDispatchToProps, dispatch)
+        };
+      }
+      Component = connect(mapStateToProps, mapDispatchToProp)(Component);
     }
     return Component;
   };

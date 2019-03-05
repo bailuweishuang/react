@@ -6,25 +6,31 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
 const webpack = require("webpack");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
+const js = [
+  '@/js/util'
+]
+const win = typeof window === "undefined" ? this : window;
 module.exports = {
   entry: {
     app: "./src/main.js",
-    vendor: ["react", "react-router-dom", "redux", "react-dom", "react-redux"]
+    //vendor: ["react", "react-router-dom", "redux", "react-dom", "react-redux"],
+    js
   },
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "build")
   },
   externals: {
-    react: "window.React",
-    "react-dom": "window.ReactDOM",
-    "react-redux": "window.ReactRedux",
-    "react-router": "window.ReactRouter",
-    "react-router-dom": "window.ReactRouterDom",
-    redux: "window.Redux",
-    moment: "window.Moment",
-    antd: "window.antd"
+    jquery: "jQuery",
+    react: "React",
+    "react-dom": "ReactDOM",
+    "react-redux": "ReactRedux",
+    "react-router": "ReactRouter",
+    "react-router-dom": "ReactRouterDom",
+    redux: "Redux",
+    moment: "moment",
+    antd: "antd",
+    'redux-thunk': "ReduxThunk"
   },
   resolve: {
     extensions: [".js", ".css", ".json", ".jsx", ".scss"],
