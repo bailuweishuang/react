@@ -30,7 +30,10 @@ module.exports = {
     redux: "Redux",
     moment: "moment",
     antd: "antd",
-    'redux-thunk': "ReduxThunk"
+    'redux-thunk': "ReduxThunk",
+    axios: "axios",
+    qs: "Qs",
+    mock: "Mock"
   },
   resolve: {
     extensions: [".js", ".css", ".json", ".jsx", ".scss"],

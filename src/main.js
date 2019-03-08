@@ -6,7 +6,11 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import GetRouter from "@/router/index";
 import Util from "@/js/util";
-import store from '@/redux/store'
+import store from '@/redux/store';
+import apiHost from '@/api';
+import '@/mock'
+let Api = new apiHost();
+global.Api = Api;
 global.Util = Util;
 ReactDOM.render(
   <Provider store={store}>

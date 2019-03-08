@@ -52,6 +52,9 @@ class Home extends React.Component {
   };
   add = () => {
     let a = 6;
+    Api.get("/user").then(res => {
+      console.log(res)
+    })
     this.props.increment(a);
   };
   render() {

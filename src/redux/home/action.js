@@ -14,3 +14,18 @@ export const decrement = () => {
 export const reset = () => {
   return { type: home.RESET };
 };
+//异步
+// export const getId = () => {
+//   return async dispatch => {
+//     try {
+//       let rest = await Api.get();
+//       res.map(i => i);
+//       dispatch({
+//         type: home.INCREMENT,
+//         ...rest
+//       });
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+// };
