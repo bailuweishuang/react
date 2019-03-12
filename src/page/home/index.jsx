@@ -1,9 +1,11 @@
 import React from "react";
 import prestrain from "@/components/prestrain";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { increment, decrement, reset } from "@/redux/home/action";
+  // const a = React.createClass({})
 @prestrain({
   style: require("./style.scss"),
   form: true,
@@ -28,7 +30,10 @@ class Home extends React.Component {
   };
   constructor(props) {
     super(props);
-    this.state = { checkNick: false };
+    this.state = {
+      checkNick: false,
+      dataSource: []
+    };
   }
   componentWillMount() {}
   componentDidMount() {}
@@ -53,8 +58,10 @@ class Home extends React.Component {
   add = () => {
     let a = 6;
     Api.get("/user").then(res => {
-      console.log(res)
-    })
+      this.setState({
+        dataSource: res.data
+      })
+    });
     this.props.increment(a);
   };
   render() {
@@ -68,7 +75,34 @@ class Home extends React.Component {
       labelCol: { span: 4 },
       wrapperCol: { span: 8, offset: 4 }
     };
-    console.log(this.props);
+    const { dataSource } = this.state;
+    const columns = [
+      {
+        title: "姓名",
+        dataIndex: "personName",
+        key: "personName"
+      },
+      {
+        title: "日期",
+        dataIndex: "Date",
+        key: "Date"
+      },
+      {
+        title: "地址",
+        dataIndex: "adress",
+        key: "adress"
+      },
+      {
+        title: "備註",
+        dataIndex: "reason",
+        key: "reason"
+      },
+      {
+        title: "原因",
+        dataIndex: "viewName",
+        key: "viewName"
+      }
+    ];
     return (
       <div className="home">
         <div>
@@ -117,6 +151,7 @@ class Home extends React.Component {
             Check
           </Button>
         </Form.Item>
+        <Table dataSource={dataSource} columns={columns} />
       </div>
     );
   }
@@ -157,4 +192,4 @@ const mapStateToProps = state => {
 //     reset
 //   }
 // )(Home);
-export default Home;
+export default withRouter(Home);

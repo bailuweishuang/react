@@ -26,7 +26,7 @@ module.exports = {
     "react-dom": "ReactDOM",
     "react-redux": "ReactRedux",
     "react-router": "ReactRouter",
-    "react-router-dom": "ReactRouterDom",
+    "react-router-dom": "ReactRouterDOM",
     redux: "Redux",
     moment: "moment",
     antd: "antd",
