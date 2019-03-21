@@ -17,6 +17,13 @@ const util = {
   isObject(obj) {
     return typeof obj === "object";
   },
+  isEmptyObject(obj) {
+    let key;
+    for (key in obj) {
+      return false;
+    }
+    return true;
+  },
   isPlainObject(obj) {
     return (
       obj &&
@@ -197,33 +204,33 @@ const util = {
   divs() {
     return util.reduce(arguments, util.div);
   },
-  // format(time, format = util.NYRSFM) {
-  //   return time ? moment(time).format(format) : "";
-  // },
-  // NY: "YYYY-MM",
-  // ny(time) {
-  //   return util.format(time, util.NY);
-  // },
-  // NYR: "YYYY-MM-DD",
-  // nyr(time) {
-  //   return util.format(time, util.NYR);
-  // },
-  // SFM: "hh-mm-ss",
-  // sfm(time) {
-  //   return util.format(time, util.SFM);
-  // },
-  // NYRSFM: "YYYY-MM-DD HH:mm:ss",
-  // nyrsfm(time) {
-  //   return util.format(time, util.NYRSFM);
-  // },
-  // NYR000: "YYYY-MM-DD 00:00:00",
-  // nyr000(time) {
-  //   return util.format(time, util.NYR000);
-  // },
-  // NYREND: "YYYY-MM-DD 23:59:59",
-  // nyrend(time) {
-  //   return util.format(time, util.NYREND);
-  // },
+  formatTime(time, format = util.NYRSFM) {
+    return time ? moment(time).format(format) : "";
+  },
+  NY: "YYYY-MM",
+  ny(time) {
+    return util.formatTime(time, util.NY);
+  },
+  NYR: "YYYY-MM-DD",
+  nyr(time) {
+    return util.formatTime(time, util.NYR);
+  },
+  SFM: "hh-mm-ss",
+  sfm(time) {
+    return util.formatTime(time, util.SFM);
+  },
+  NYRSFM: "YYYY-MM-DD HH:mm:ss",
+  nyrsfm(time) {
+    return util.formatTime(time, util.NYRSFM);
+  },
+  NYR000: "YYYY-MM-DD 00:00:00",
+  nyr000(time) {
+    return util.formatTime(time, util.NYR000);
+  },
+  NYREND: "YYYY-MM-DD 23:59:59",
+  nyrend(time) {
+    return util.formatTime(time, util.NYREND);
+  },
   format({
     number = typeof arguments[0] === "object"
       ? arguments[0].number
@@ -414,6 +421,15 @@ const util = {
       thousands,
       suffixZeroNum
     });
+  },
+  getObsUrl(obsId, imageSize = 800) {
+    return `${location.origin}/obs/view.json?mockSessionId=${Util.getMockSessionId()}&id=${obsId}&imageSize=${imageSize}`;
+  },
+  openObs(obsId) {
+    global.open(util.getObsUrl(obsId));
+  },
+  getMockSessionId(mockSessionId) {
+    return localStorage.getItem("zds-mockSessionId");
   }
 };
 export default util;
