@@ -5,12 +5,14 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { increment, decrement, reset } from "@/redux/home/action";
-  // const a = React.createClass({})
+// const a = React.createClass({})
+import Hook from "./hook";
 @prestrain({
   style: require("./style.scss"),
   form: true,
   connect: {
     mapStateToProps: state => {
+      console.log(state);
       return {
         reducer: state.reducer
       };
@@ -36,9 +38,21 @@ class Home extends React.Component {
     };
   }
   componentWillMount() {}
-  componentDidMount() {}
+  componentDidMount() {
+    console.log(this.b.color)
+  }
+  a = () => {
+    this.color = ["a", "b", "C"];
+    this.a.prototype.add = () => {
+      return 4;
+    };
+  };
+  b = () => {
+    this.a.call(this);
+  };
   check = () => {
-    this.props.form.validateFields(err => {
+    this.props.form.validateFields((err, value) => {
+      console.log(value);
       if (!err) {
         console.info("success");
       }
@@ -60,7 +74,7 @@ class Home extends React.Component {
     Api.get("/user").then(res => {
       this.setState({
         dataSource: res.data
-      })
+      });
     });
     this.props.increment(a);
   };
@@ -111,8 +125,10 @@ class Home extends React.Component {
           <button onClick={() => this.props.decrement()}>自减</button>
           <button onClick={() => this.props.reset()}>重置</button>
         </div>
+        <Hook name={"张珊"} />
         <Form.Item {...formItemLayout} label="data">
-          {getFieldDecorator("username", {
+          {getFieldDecorator("username1", {
+            initialValue: moment("2019-01-01"),
             rules: [
               {
                 required: true,
@@ -123,6 +139,7 @@ class Home extends React.Component {
         </Form.Item>
         <Form.Item {...formItemLayout} label="Name">
           {getFieldDecorator("username", {
+            initialValue: "000",
             rules: [
               {
                 required: true,
@@ -131,7 +148,7 @@ class Home extends React.Component {
             ]
           })(<Input placeholder="Please input your name" />)}
         </Form.Item>
-        <Form.Item {...formItemLayout} label="Nickname">
+        {/*<Form.Item {...formItemLayout} label="Nickname">
           {getFieldDecorator("nickname", {
             rules: [
               {
@@ -140,7 +157,7 @@ class Home extends React.Component {
               }
             ]
           })(<Input placeholder="Please input your nickname" />)}
-        </Form.Item>
+        </Form.Item>*/}
         <Form.Item {...formTailLayout}>
           <Checkbox checked={this.state.checkNick} onChange={this.handleChange}>
             Nickname is required
@@ -156,11 +173,11 @@ class Home extends React.Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    reducer: state.reducer
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     reducer: state.reducer
+//   };
+// };
 
 // const mapDispatchToProps = dispatch => {
 //   return {

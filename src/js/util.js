@@ -18,11 +18,7 @@ const util = {
     return typeof obj === "object";
   },
   isEmptyObject(obj) {
-    let key;
-    for (key in obj) {
-      return false;
-    }
-    return true;
+    return obj !== null && typeof obj === 'object' && !Array.isArray(obj) && (Object.getOwnPropertyNames(obj).length === 0);
   },
   isPlainObject(obj) {
     return (
