@@ -1,48 +1,58 @@
-import React from "react";
-import prestrain from "@/components/prestrain";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
-import { bindActionCreators } from "redux";
-import { increment, decrement, reset } from "@/redux/home/action";
+import React from 'react';
+import prestrain from '@/components/prestrain';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import { increment, decrement, reset } from '@/redux/home/action';
+import { addSome, Debounce } from 'npm-react-dom';
 // const a = React.createClass({})
-import Hook from "./hook";
+import Hook from './hook';
 @prestrain({
-  style: require("./style.scss"),
+  style: require('./style.scss'),
   form: true,
   connect: {
-    mapStateToProps: state => {
+    mapStateToProps: (state) => {
       console.log(state);
       return {
-        reducer: state.reducer
+        reducer: state.reducer,
       };
     },
     mapDispatchToProps: {
       increment,
       decrement,
-      reset
-    }
-  }
+      reset,
+    },
+  },
 })
 class Home extends React.Component {
   static propTypes = {
     increment: PropTypes.func.isRequired,
     decrement: PropTypes.func.isRequired,
-    reset: PropTypes.func.isRequired
+    reset: PropTypes.func.isRequired,
   };
   constructor(props) {
     super(props);
     this.state = {
       checkNick: false,
-      dataSource: []
+      dataSource: [],
     };
   }
-  componentWillMount() {}
+  componentWillMount() {
+    function realFunc() {
+      console.log('Success');
+    }
+
+    // 采用了防抖动
+    window.addEventListener('scroll', Debounce(realFunc, 500));
+    // 没采用防抖动
+    window.addEventListener('scroll', realFunc);
+  }
   componentDidMount() {
-    console.log(this.b.color)
+    console.log(this.b.color);
   }
   a = () => {
-    this.color = ["a", "b", "C"];
+    this.color = ['a', 'b', 'C'];
     this.a.prototype.add = () => {
       return 4;
     };
@@ -54,26 +64,26 @@ class Home extends React.Component {
     this.props.form.validateFields((err, value) => {
       console.log(value);
       if (!err) {
-        console.info("success");
+        console.info('success');
       }
     });
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState(
       {
-        checkNick: e.target.checked
+        checkNick: e.target.checked,
       },
       () => {
-        this.props.form.validateFields(["nickname"], { force: true });
-      }
+        this.props.form.validateFields(['nickname'], { force: true });
+      },
     );
   };
   add = () => {
     let a = 6;
-    Api.get("/user").then(res => {
+    Api.get('/user').then((res) => {
       this.setState({
-        dataSource: res.data
+        dataSource: res.data,
       });
     });
     this.props.increment(a);
@@ -83,40 +93,41 @@ class Home extends React.Component {
     const { getFieldDecorator } = form;
     const formItemLayout = {
       labelCol: { span: 4 },
-      wrapperCol: { span: 8 }
+      wrapperCol: { span: 8 },
     };
     const formTailLayout = {
       labelCol: { span: 4 },
-      wrapperCol: { span: 8, offset: 4 }
+      wrapperCol: { span: 8, offset: 4 },
     };
     const { dataSource } = this.state;
     const columns = [
       {
-        title: "姓名",
-        dataIndex: "personName",
-        key: "personName"
+        title: '姓名',
+        dataIndex: 'personName',
+        key: 'personName',
       },
       {
-        title: "日期",
-        dataIndex: "Date",
-        key: "Date"
+        title: '日期',
+        dataIndex: 'Date',
+        key: 'Date',
       },
       {
-        title: "地址",
-        dataIndex: "adress",
-        key: "adress"
+        title: '地址',
+        dataIndex: 'adress',
+        key: 'adress',
       },
       {
-        title: "備註",
-        dataIndex: "reason",
-        key: "reason"
+        title: '備註',
+        dataIndex: 'reason',
+        key: 'reason',
       },
       {
-        title: "原因",
-        dataIndex: "viewName",
-        key: "viewName"
-      }
+        title: '原因',
+        dataIndex: 'viewName',
+        key: 'viewName',
+      },
     ];
+    console.log(addSome(1, 2), '1111');
     return (
       <div className="home">
         <div>
@@ -125,27 +136,27 @@ class Home extends React.Component {
           <button onClick={() => this.props.decrement()}>自减</button>
           <button onClick={() => this.props.reset()}>重置</button>
         </div>
-        <Hook name={"张珊"} />
+        <Hook name={'张珊'} />
         <Form.Item {...formItemLayout} label="data">
-          {getFieldDecorator("username1", {
-            initialValue: moment("2019-01-01"),
+          {getFieldDecorator('username1', {
+            initialValue: moment('2019-01-01'),
             rules: [
               {
                 required: true,
-                message: "Please input your name"
-              }
-            ]
-          })(<DatePicker style={{ width: "100%" }} />)}
+                message: 'Please input your name',
+              },
+            ],
+          })(<DatePicker style={{ width: '100%' }} />)}
         </Form.Item>
         <Form.Item {...formItemLayout} label="Name">
-          {getFieldDecorator("username", {
-            initialValue: "000",
+          {getFieldDecorator('username', {
+            initialValue: '000',
             rules: [
               {
                 required: true,
-                message: "Please input your name"
-              }
-            ]
+                message: 'Please input your name',
+              },
+            ],
           })(<Input placeholder="Please input your name" />)}
         </Form.Item>
         {/*<Form.Item {...formItemLayout} label="Nickname">
