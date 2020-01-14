@@ -1,5 +1,8 @@
 var moment = require("moment");
+import newFunc from './new';
+
 const util = {
+  ...newFunc,
   getRandomString: function string() {
     return `_${Math.random()
       .toString(36)

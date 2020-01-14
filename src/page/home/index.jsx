@@ -39,18 +39,16 @@ class Home extends React.Component {
     };
   }
   componentWillMount() {
-    function realFunc() {
-      console.log('Success');
+    function realFunc(aa) {
+      console.log('Success', aa.context);
     }
 
     // 采用了防抖动
-    window.addEventListener('scroll', Debounce(realFunc, 500));
+    window.addEventListener('scroll', Debounce(realFunc, 500, {loading: true, context: 'success11'}));
     // 没采用防抖动
     window.addEventListener('scroll', realFunc);
   }
-  componentDidMount() {
-    console.log(this.b.color);
-  }
+  componentDidMount() { }
   a = () => {
     this.color = ['a', 'b', 'C'];
     this.a.prototype.add = () => {
