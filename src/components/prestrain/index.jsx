@@ -4,6 +4,15 @@ import { Form } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 const withRouter = ReactRouterDOM.withRouter;
+// 装饰器的使用
+// 安装 npm run eject 
+// 安装相关插件 
+// npm install bable-preset-stage-2 --save-dev
+// npm install bable-preset-react-native-stage- --save-dev
+// 根目录下创建.babelrc
+/**/ {
+// 'presets': ['react-native-stage-0/decorator-suppert'] 
+}/**/
 let page = options => {
   options = { withRouter: true, ...options };
   return function(Component) {
